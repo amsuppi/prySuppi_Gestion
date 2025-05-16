@@ -12,9 +12,16 @@ namespace prySuppi_Gestion
 {
     public partial class frmGestion : Form
     {
+        clsUsuario objUsuario;
         public frmGestion()
         {
             InitializeComponent();
+        }
+
+        private void frmGestion_Load(object sender, EventArgs e)
+        {
+            objUsuario = new clsUsuario();
+            lblConexion.Text = objUsuario.estadoConexion;
         }
     }
 }
