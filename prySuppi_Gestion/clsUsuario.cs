@@ -21,8 +21,11 @@ namespace prySuppi_Gestion
         string rutaArchivo;
         public string estadoConexion;
 
+        public string Nombre;
+
         public clsUsuario()
         {
+
             try
             {
                 rutaArchivo = @"../../Archivos/BDusuarios.accdb";
@@ -88,6 +91,8 @@ namespace prySuppi_Gestion
                 comandoBD.CommandText = "Usuario";
 
                 lectorBD = comandoBD.ExecuteReader();
+
+                Nombre = nombreUser;
 
                 if (lectorBD.HasRows)
                 {

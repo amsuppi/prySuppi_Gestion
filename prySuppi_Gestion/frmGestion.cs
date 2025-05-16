@@ -13,6 +13,7 @@ namespace prySuppi_Gestion
     public partial class frmGestion : Form
     {
         clsUsuario objUsuario;
+        
         public frmGestion()
         {
             InitializeComponent();
@@ -22,6 +23,29 @@ namespace prySuppi_Gestion
         {
             objUsuario = new clsUsuario();
             lblConexion.Text = objUsuario.estadoConexion;
+        }
+
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            objUsuario.ValidarUsuario(txtUsuario.Text, txtContraseña.Text);
+ 
+
+            if(objUsuario.estadoConexion == "Usuario EXISTE")
+            {
+                try
+                {
+                    frmProveedor frmProveedor = new frmProveedor(txtUsuario.Text);
+                    frmProveedor.Show();
+                } catch
+                {
+                    MessageBox.Show("Error al iniciar sesión: " + objUsuario.estadoConexion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Error al iniciar sesión: " + objUsuario.estadoConexion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
